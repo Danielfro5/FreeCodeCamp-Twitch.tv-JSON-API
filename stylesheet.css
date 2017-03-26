@@ -16,7 +16,7 @@ a:hover, a:active {
 
 body{
   text-align: center;
-
+  background-color: rgb(180, 171, 196);
   font-family: monospace;
 }
 
@@ -26,7 +26,7 @@ button:hover{
 
 }
 button{
-  
+
   background-color: rgb(97, 0, 164);
   color: white;
 }

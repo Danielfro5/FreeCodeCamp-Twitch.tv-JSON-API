@@ -1,7 +1,8 @@
+var twitchStreamers = ["FreeCodeCamp","OPL","SaltyBet","RedBull","brunofin"];
+
 $(function() {
- twitchCall("OPL");
- twitchCall("SaltyBet");
- twitchCall("RedBull");
+ twitchClick();
+
 
 });
 
@@ -55,21 +56,19 @@ function offlineCall(channelName){
 
 function twitchClick(){
   document.getElementById("mainDiv").innerHTML = null;
-  twitchCall("OPL");
-  twitchCall("SaltyBet");
-  twitchCall("RedBull");
+  for(i=0;i<twitchStreamers.length;i++){
+   twitchCall(twitchStreamers[i]);
+  }
+
 }
 
 function onlineClick(){
     document.getElementById("mainDiv").innerHTML = null;
-  onlineCall("OPL");
-  onlineCall("SaltyBet");
-  onlineCall("RedBull");
+     onlineCall(twitchStreamers[i]);
+
 }
 
 function offlineClick(){
   document.getElementById("mainDiv").innerHTML = null;
-  offlineCall("OPL");
-  offlineCall("SaltyBet");
-  offlineCall("RedBull");
+  offlineCall(twitchStreamers[i]);
 }
