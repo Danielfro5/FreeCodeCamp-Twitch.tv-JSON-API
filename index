@@ -5,7 +5,8 @@
 <title>FreeCodeCamp-Twitch.tv JSON API</title>
 </head>
 <body>
-
+<div id="testId"></div>
+<img id="picId">
 <script src="jquery-3.1.1.min.js"></script>
 <script src="main.js"></script>
 </body>
