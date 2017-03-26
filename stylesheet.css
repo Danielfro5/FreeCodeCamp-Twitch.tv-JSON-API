@@ -1,0 +1,32 @@
+a {
+    background-color: rgb(97, 0, 164);
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+
+}
+
+
+a:hover, a:active {
+    background-color: rgb(172, 51, 182);
+    color: white;
+}
+
+body{
+  text-align: center;
+
+  font-family: monospace;
+}
+
+button:hover{
+  background-color: rgb(172, 51, 182);
+  color: white;
+
+}
+button{
+  
+  background-color: rgb(97, 0, 164);
+  color: white;
+}
