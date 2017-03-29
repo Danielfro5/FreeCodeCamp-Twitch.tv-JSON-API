@@ -1,35 +1,40 @@
 var twitchStreamers = ["FreeCodeCamp","OPL","SaltyBet","RedBull","brunofin"];
-var userCallVar;
 
-$(function() {
-  twitchClick();
 
-});
-function userCall(channelName){
-  var urlUser = ("https://wind-bow.gomix.me/twitch-api/users/"+channelName+"?callback=?");
-  $.getJSON(urlUser,function(userData){
+twitchClick();
 
-    if(userData.status == "404"){
-      //variable not working
-      userCallVar = "User does not exist";
 
-    }else userCallVar =  "";
 
-  });
 
-}
+
+
+
 
 function twitchCall(channelName){
 
   var url = ("https://wind-bow.gomix.me/twitch-api/streams/"+channelName+"?callback=?");
-  userCall(channelName);
-  $.getJSON(url,function(twitchData){
 
+  $.getJSON(url,function(twitchData){
+    var userCallVar;
     if(twitchData.stream === null){
-      document.getElementById("mainDiv").innerHTML += ("<a href='https://twitch.tv/"+channelName+"'><img alt='channel logo' width='40' height='40' src='https://i.vimeocdn.com/portrait/10159238_300x300'><b>"+channelName+"</b> || Channel Offline ||"+userCallVar+"</a><br>");
+      $.getJSON("https://wind-bow.gomix.me/twitch-api/users/"+channelName+"?callback=?",function(userData){
+
+        if(userData.status === 404){
+          userCallVar = "User does not exist";
+
+          document.getElementById("mainDiv").innerHTML += ("<a href='https://twitch.tv/"+channelName+"'><img alt='channel logo' width='40' height='40' src='https://i.vimeocdn.com/portrait/10159238_300x300'><b>"+channelName+"</b> || Channel Offline ||"+userCallVar+"</a><br>");
+
+      }  else  {
+        userCallVar = "";
+        document.getElementById("mainDiv").innerHTML += ("<a href='https://twitch.tv/"+channelName+"'><img alt='channel logo' width='40' height='40' src='https://i.vimeocdn.com/portrait/10159238_300x300'><b>"+channelName+"</b> || Channel Offline ||</a><br>");
+
+      }
+      });
+
 
     }
     else{
+
       document.getElementById("mainDiv").innerHTML +=
       ("<a href='https://twitch.tv/"+channelName+"'><img alt='channel logo' width='40' height='40' src='"+twitchData.stream.channel.logo+"'><b>"+channelName+"</b> || Channel Online || <i>"+twitchData.stream.channel.status+"</i></a><br>");
 
@@ -39,6 +44,8 @@ function twitchCall(channelName){
 
 });
 }
+
+
 
 function onlineCall(channelName){
   var url = ("https://wind-bow.gomix.me/twitch-api/streams/"+channelName+"?callback=?");
@@ -60,8 +67,20 @@ function offlineCall(channelName){
   var url = ("https://wind-bow.gomix.me/twitch-api/streams/"+channelName+"?callback=?");
   $.getJSON(url,function(twitchData){
     if(twitchData.stream === null){
-      document.getElementById("mainDiv").innerHTML += ("<a href='https://twitch.tv/"+channelName+"'><img alt='channel logo' width='40' height='40' src='https://i.vimeocdn.com/portrait/10159238_300x300'><b>"+channelName+"</b> || Channel Offline ||</a><br>");
+      $.getJSON("https://wind-bow.gomix.me/twitch-api/users/"+channelName+"?callback=?",function(userData){
 
+        if(userData.status === 404){
+          userCallVar = "User does not exist";
+
+          document.getElementById("mainDiv").innerHTML += ("<a href='https://twitch.tv/"+channelName+"'><img alt='channel logo' width='40' height='40' src='https://i.vimeocdn.com/portrait/10159238_300x300'><b>"+channelName+"</b> || Channel Offline ||"+userCallVar+"</a><br>");
+
+      }  else  {
+        userCallVar = "";
+        document.getElementById("mainDiv").innerHTML += ("<a href='https://twitch.tv/"+channelName+"'><img alt='channel logo' width='40' height='40' src='https://i.vimeocdn.com/portrait/10159238_300x300'><b>"+channelName+"</b> || Channel Offline ||</a><br>");
+
+      }
+      });
+    
     }
 
 
@@ -92,3 +111,9 @@ function offlineClick(){
   offlineCall(twitchStreamers[i]);
 }
 }
+
+function userClick(){
+
+  for(i=0;i<twitchStreamers.length;i++){
+  userCall(twitchStreamers[i]);
+}}
